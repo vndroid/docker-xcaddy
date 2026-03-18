@@ -2,16 +2,17 @@ FROM golang:1.25-alpine3.23
 
 RUN apk add --no-cache \
 	ca-certificates \
+	curl \
 	git \
 	libcap
 
-ENV XCADDY_VERSION v0.4.5
+ENV XCADDY_VERSION=v0.4.5
 # Configures xcaddy to build with this version of Caddy
-ENV CADDY_VERSION v2.10.2
+ENV CADDY_VERSION=v2.11.2
 # Configures xcaddy to not clean up post-build (unnecessary in a container)
-ENV XCADDY_SKIP_CLEANUP 1
+ENV XCADDY_SKIP_CLEANUP=1
 # Sets capabilities for output caddy binary to be able to bind to privileged ports
-ENV XCADDY_SETCAP 1
+ENV XCADDY_SETCAP=1
 
 RUN set -eux; \
 	apkArch="$(apk --print-arch)"; \
